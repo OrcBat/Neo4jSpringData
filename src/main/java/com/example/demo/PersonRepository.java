@@ -1,10 +1,12 @@
 package com.example.demo;
 
 import java.util.List;
-import org.springframework.data.neo4j.repository.Neo4jRepository;
 
-public interface PersonRepository extends Neo4jRepository<Person, Long> {
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 
-    Person findByName(String name);
-    List<Person> findByTeammatesName(String name);
+public interface PersonRepository extends PagingAndSortingRepository<Person, Long> {
+
+    List<Person> findByLastName(@Param("name") String name);
+
 }
